@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timetable</title>
+    <style>
+            th, td{
+                border: 1px solid black;
+                margin: 0px;
+            }
+            tr{
+                background-color: rgba(20, 20, 20, 0.2);
+            }
+            tr:hover{
+                background-color: rgba(20, 20, 20, 0.1);
+            }
+            caption{
+                background-color: rgba(20, 20, 20, 0.2);
+                padding: 10px;
+                margin: 5px 0 10px 0;
+                font-weight: bold;
+            }
+            .back-auth{
+                background-color: rgba(240, 0, 0, 0.2);
+            }
+            .back-auth:hover{
+                background-color: rgba(240, 0, 0, 0.1);
+            }
+            a{
+                color: navy;
+            }
+            a:hover{
+                color: black;
+            }
+        </style>
+</head>
+<body>
+<table cellpadding="10">
+    <caption>TimeTable REST API</caption>
+    <tr>
+        <th>Request method</th>
+        <th>Url path</th>
+        <th>Web service</th>
+        <th>Authorization</th>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td><a href="/classrooms">classrooms</a></td>
+        <td>A termek listája</td>
+        <td>engedélyezett</td>
+    </tr>
+
+    <tr>
+        <td>GET</td>
+        <td><a href="/classrooms/3">classrooms/{DOORNUMBER_ID}</a></td>
+        <td>Id által kiválasztott terem adatai</td>
+        <td>engedélyezett</td>
+    </tr>
+
+
+
+
+
+    <tr class="back-auth">
+        <td>POST</td>
+        <td>classrooms</td>
+        <td>Új terem felvétele</td>
+        <td>jelszóval védendő</td>
+    </tr>
+    <tr class="back-auth">
+        <td>PATCH</td>
+        <td>classrooms/{DOORNUMBER_ID}</td>
+        <td>Terem módosítása</td>
+        <td>jelszóval védendő</td>
+    </tr>
+    <tr class="back-auth">
+        <td>DELETE</td>
+        <td>classrooms/{DOORNUMBER_ID}</td>
+        <td>Kiválasztott terem törlése</td>
+        <td>jelszóval védendő</td>
+    </tr>
+
+
+
+</table>
+</body>
+</html>
