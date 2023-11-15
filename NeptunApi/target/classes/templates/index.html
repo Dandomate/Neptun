@@ -45,28 +45,11 @@
     </tr>
     <tr>
         <td>GET</td>
-        <td><a href="/students">students</a></td>
-        <td>A tanulok névsora</td>
-        <td>engedélyezett</td>
-    </tr>
-    <tr>
-        <td>GET</td>
-        <td><a href="/subjects">subjects</a></td>
-        <td>A tantárgyak listája</td>
-        <td>engedélyezett</td>
-    </tr>
-    <tr>
-        <td>GET</td>
         <td><a href="/classrooms">classrooms</a></td>
         <td>A termek listája</td>
         <td>engedélyezett</td>
     </tr>
 
-    <td>GET</td>
-    <td><a href="/subjects/1">subjects/{SUBJECT_ID}</a></td>
-    <td>Id által kiválasztott tantárgy</td>
-    <td>engedélyezett</td>
-    </tr>
     <tr>
         <td>GET</td>
         <td><a href="/classrooms/3">classrooms/{DOORNUMBER_ID}</a></td>
@@ -74,31 +57,9 @@
         <td>engedélyezett</td>
     </tr>
 
-    <td>GET</td>
-    <td><a href="/students/75957745931">students/{OMA_STUDENT}</a></td>
-    <td>Om azonosító által kiválasztott diák adatai</td>
-    <td>engedélyezett</td>
-    </tr>
 
 
-    <tr class="back-auth">
-        <td>POST</td>
-        <td>students</td>
-        <td>Új tanulók hozzáadása</td>
-        <td>jelszóval védendő</td>
-    </tr>
-    <tr class="back-auth">
-        <td>PATCH</td>
-        <td>students/{OMA_STUDENT}</td>
-        <td>Tanuló módosítása</td>
-        <td>jelszóval védendő</td>
-    </tr>
-    <tr class="back-auth">
-        <td>DELETE</td>
-        <td>students/{OMA_STUDENT}</td>
-        <td>Kiválasztott Tanuló törlése</td>
-        <td>jelszóval védendő</td>
-    </tr>
+
 
     <tr class="back-auth">
         <td>POST</td>
@@ -120,24 +81,6 @@
     </tr>
 
 
-    <tr class="back-auth">
-        <td>POST</td>
-        <td>subjects</td>
-        <td>Új tantárgyak felvétele</td>
-        <td>jelszóval védendő</td>
-    </tr>
-    <tr class="back-auth">
-        <td>PATCH</td>
-        <td>subjects/{SUBJECT_ID}</td>
-        <td>Tantárgyak módosítása</td>
-        <td>jelszóval védendő</td>
-    </tr>
-    <tr class="back-auth">
-        <td>DELETE</td>
-        <td>subjects/{SUBJECT_ID}</td>
-        <td>Kiválasztott tantárgy törlése</td>
-        <td>jelszóval védendő</td>
-    </tr>
 
 </table>
 </body>
