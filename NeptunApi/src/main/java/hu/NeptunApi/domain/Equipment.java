@@ -1,9 +1,14 @@
 package hu.NeptunApi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "equipment")
@@ -18,6 +23,10 @@ public class Equipment {
     private int quantity;
     @Size(min = 1,max = 100, message = "A megnevezés min 1 max 100 karakter")
     private String description;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "equipment")
+    private List<Equipment> equipment;
 
     public Equipment() {
     }
@@ -54,10 +63,11 @@ public class Equipment {
         this.description = description;
     }
 
-    public Equipment(int ID, String designation, int quantity, String description) {
+    public Equipment(int ID, String designation, int quantity, String description, List<Equipment> equipment) {
         this.ID = ID;
         this.designation = designation;
         this.quantity = quantity;
         this.description = description;
+        this.equipment = equipment;
     }
 }

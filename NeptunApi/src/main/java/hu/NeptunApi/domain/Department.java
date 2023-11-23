@@ -1,7 +1,11 @@
 package hu.NeptunApi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "department")
@@ -12,6 +16,9 @@ public class Department {
     @Size(min = 1,max = 30, message = "Az ajtoszám min 1 max 30 karakter")
     @Column(unique = true)
     private String name;
+    @JsonIgnore
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private List<Teacher> teachers = new ArrayList<>();
 
 
     public Department() {
@@ -36,5 +43,13 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
     }
 }

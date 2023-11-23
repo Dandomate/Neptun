@@ -1,10 +1,12 @@
 package hu.NeptunApi.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Entity
 @Table(name = "classroom")
@@ -19,7 +21,9 @@ public class ClassRoom {
     @Min(value = 1,message = "érték 1 nél kisebb")
     @Max(value = 100, message = "érték 100 nál nagyobb")
     private int space;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "classroom")
+    private List<Course> courses;
 
 
     public ClassRoom(int ID, String door, int space) {
