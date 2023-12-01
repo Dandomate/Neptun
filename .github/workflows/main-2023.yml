@@ -22,7 +22,7 @@ jobs:
         run: mvn test -f NeptunApi/pom.xml
       - name: Coverage with JaCoCo
         if: always()
-        run: mvn jacoco:report
+        run: mvn jacoco:report -f NeptunApi/pom.xml
       - name: Publish coverage report
         if: always()
         uses: actions/upload-artifact@v3
