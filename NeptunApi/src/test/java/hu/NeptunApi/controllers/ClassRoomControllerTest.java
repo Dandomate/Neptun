@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -24,8 +25,9 @@ public class ClassRoomControllerTest {
     @InjectMocks
     private ClassRoomController classRoomController;
 
+
     @Test
-    public void testAddClassRoom() {
+    public void shouldAddClassRoom() {
         // Arrange
         NewClassRoomRequest newClassRoomRequest = new NewClassRoomRequest();
 
@@ -37,7 +39,7 @@ public class ClassRoomControllerTest {
     }
 
     @Test
-    public void testUpdateClassRoom() {
+    public void shouldUpdateClassRoom() {
         // Arrange
         int roomId = 1;
         ClassRoom updatedClassRoom = new ClassRoom();
@@ -49,8 +51,9 @@ public class ClassRoomControllerTest {
         // Assert
         verify(classRoomService, times(1)).updateClassRoom(eq(roomId), anyInt());
     }
+
     @Test
-    public void testDeleteClassRoom() {
+    public void shouldDeleteClassRoom() {
         // Arrange
         int roomId = 1;
 
@@ -61,10 +64,8 @@ public class ClassRoomControllerTest {
         verify(classRoomService, times(1)).deleteClassRoom(eq(roomId));
     }
 
-
-
     @Test
-    public void testGetClassRoom() {
+    public void shouldGetClassRoom() {
         // Arrange
         int roomId = 1;
         ClassRoom expectedClassRoom = new ClassRoom(roomId, "ClassRoom1", 30);
@@ -74,10 +75,11 @@ public class ClassRoomControllerTest {
         ClassRoom actualClassRoom = classRoomController.getClassRoom(roomId);
 
         // Assert
-        assertEquals(expectedClassRoom, actualClassRoom);
+        assertThat(actualClassRoom).isEqualTo(expectedClassRoom);
     }
+
     @Test
-    public void testGetClassRooms() {
+    public void shouldGetClassRooms() {
         // Arrange
         List<ClassRoomList> expectedClassRooms = Arrays.asList(
                 new ClassRoomList(),
@@ -89,6 +91,6 @@ public class ClassRoomControllerTest {
         List<ClassRoomList> actualClassRooms = classRoomController.getClassRooms();
 
         // Assert
-        assertEquals(expectedClassRooms, actualClassRooms);
+        assertThat(actualClassRooms).isEqualTo(expectedClassRooms);
     }
 }
