@@ -19,7 +19,7 @@ jobs:
       - name: Compile with Maven
         run: mvn -f NeptunApi/pom.xml compile
       - name: Test with Maven
-        run: mvn -f NeptunApi/pom.xml test
+        run: mvn test NeptunApi/pom.xm
       - name: Coverage with JaCoCo
         if: always()
         run: mvn jacoco:report
