@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Nov 23. 02:28
+-- Létrehozás ideje: 2023. Dec 01. 13:38
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -38,10 +38,13 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`ID`, `door`, `space`) VALUES
-(1, '128B', 21),
-(3, 'D1', 60),
+(3, 'D1', 71),
 (4, 'D2', 34),
-(5, '128', 21);
+(5, '128', 41),
+(7, '123/B', 31),
+(8, '123/B', 31),
+(10, '021A', 20),
+(11, '106C', 30);
 
 -- --------------------------------------------------------
 
@@ -52,11 +55,10 @@ INSERT INTO `classroom` (`ID`, `door`, `space`) VALUES
 CREATE TABLE `course` (
   `ID` int(10) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `description` text NOT NULL,
-  `date` varchar(30) NOT NULL,
+  `description` varchar(30) NOT NULL,
+  `day` varchar(30) NOT NULL,
   `equipment_ID` int(10) NOT NULL,
   `classroom_ID` int(10) NOT NULL,
-  `grade_ID` int(10) NOT NULL,
   `teacher_ID` int(10) NOT NULL,
   `student_ID` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -65,9 +67,18 @@ CREATE TABLE `course` (
 -- A tábla adatainak kiíratása `course`
 --
 
-INSERT INTO `course` (`ID`, `name`, `description`, `date`, `equipment_ID`, `classroom_ID`, `grade_ID`, `teacher_ID`, `student_ID`) VALUES
-(1, 'Angol', 'Angol tárgy teljesitéséhez xy kell', '2021.01.12', 1, 5, 2, 3, 1),
-(3, 'Operácio Kutatás', 'A tárgy teljesitése 50%', '2021.01.12', 1, 4, 4, 2, 1);
+INSERT INTO `course` (`ID`, `name`, `description`, `day`, `equipment_ID`, `classroom_ID`, `teacher_ID`, `student_ID`) VALUES
+(2, 'Angol', '1-6 óráig', 'Hétfő', 7, 4, 1, 5),
+(4, 'Program', '8-12 óráig', 'Hétfő', 7, 5, 3, 4),
+(5, 'Progtech', '1-3 óráig', 'Hétfő', 7, 5, 3, 4),
+(6, 'Angol', '1-3 óráig', 'Kedd', 8, 7, 68, 5),
+(8, 'Angol', '12-2 óráig', 'Szerda', 10, 5, 3, 11),
+(9, 'Földrajz', '12-2 óráig', 'Csütörtök', 11, 7, 68, 9),
+(10, 'Rajz', '12-2 óráig', 'Péntek', 10, 11, 68, 2),
+(11, 'Java 2', '12-4 óráig', 'Hétfő', 7, 4, 68, 11),
+(12, 'ProgTech2', '3-4 óráig', 'Szerda', 10, 8, 68, 4),
+(13, 'Angol', '1-3 óráig', 'Kedd', 8, 7, 68, 8),
+(14, 'Angol', '1-3 óráig', 'Kedd', 8, 7, 68, 10);
 
 -- --------------------------------------------------------
 
@@ -88,7 +99,9 @@ INSERT INTO `department` (`ID`, `name`) VALUES
 (1, 'Programtervező informatikus'),
 (2, 'Vendéglátás'),
 (3, 'Rendszergazda'),
-(4, 'Földrajz');
+(4, 'Földrajz'),
+(12, 'Túrizmus'),
+(13, 'Tanárképző');
 
 -- --------------------------------------------------------
 
@@ -97,10 +110,10 @@ INSERT INTO `department` (`ID`, `name`) VALUES
 --
 
 CREATE TABLE `equipment` (
-  `ID` int(30) NOT NULL,
+  `ID` int(10) NOT NULL,
   `designation` varchar(30) NOT NULL,
-  `quantity` int(30) NOT NULL,
-  `description` text NOT NULL
+  `quantity` int(10) NOT NULL,
+  `description` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -108,7 +121,10 @@ CREATE TABLE `equipment` (
 --
 
 INSERT INTO `equipment` (`ID`, `designation`, `quantity`, `description`) VALUES
-(1, 'Projektor', 1, 'Hd projektor');
+(7, 'Projektor', 1, 'HD'),
+(8, 'Vászon', 1, '2mx1m'),
+(10, 'Projektor', 1, 'Full HD'),
+(11, 'Vászon', 1, '3x3');
 
 -- --------------------------------------------------------
 
@@ -150,8 +166,13 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`ID`, `name`, `birth_date`, `neptun_code`) VALUES
-(1, 'valaki', '20251', 'AYIE0MS'),
-(2, 'Janoska', '1999.09.12', 'JETTE1');
+(2, 'Janos Péter', '1973-04-12', 'JETTE1'),
+(4, 'Iván Márk', '1999-01-12', 'AYIE0M'),
+(5, 'Toth Áron', '2021-11-21', 'UHZTGN'),
+(8, 'Kolompár László', '1988-11-30', 'KJUZHN'),
+(9, 'Vicc Elek', '1967-06-12', 'AZUIEN'),
+(10, 'Puskás Zsolt', '1997-09-15', 'UJHGTZ'),
+(11, 'Karo Tihamér', '1999-01-12', 'KUZHJK');
 
 -- --------------------------------------------------------
 
@@ -161,6 +182,7 @@ INSERT INTO `student` (`ID`, `name`, `birth_date`, `neptun_code`) VALUES
 
 CREATE TABLE `teacher` (
   `ID` int(10) NOT NULL,
+  `neptun_code` varchar(30) NOT NULL,
   `name` varchar(30) NOT NULL,
   `department_ID` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -169,15 +191,17 @@ CREATE TABLE `teacher` (
 -- A tábla adatainak kiíratása `teacher`
 --
 
-INSERT INTO `teacher` (`ID`, `name`, `department_ID`) VALUES
-(1, 'Dandóczi', 1),
-(2, 'Réti Géza', 2),
-(3, 'Tavas János', 3),
-(43, 'John Doe', 4),
-(52, 'Papp János', 2),
-(53, 'Papika', 3),
-(54, 'Toth Zoltán', 3),
-(67, 'Totha', 3);
+INSERT INTO `teacher` (`ID`, `neptun_code`, `name`, `department_ID`) VALUES
+(1, 'AJUZEM', 'Kacsa Zoli', 3),
+(2, 'SDFGHJ', 'Réti Géza', 2),
+(3, 'DFGHJK', 'Példa Krisztián', 2),
+(43, 'FGHJKL', 'John Doe', 4),
+(52, 'XCVBNN', 'Papp János', 2),
+(53, 'QWERTZ', 'Papp Pali', 3),
+(54, 'UJNGRE', 'Toth Zoltán', 3),
+(67, 'JKASEA', 'Molnár Krisztián', 3),
+(68, 'ASDFGQ', 'Kardos Máté', 3),
+(69, 'ASDFXX', 'Dandóczi Máté', 1);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -194,7 +218,10 @@ ALTER TABLE `classroom`
 --
 ALTER TABLE `course`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `equipment_ID` (`equipment_ID`,`classroom_ID`,`grade_ID`,`teacher_ID`,`student_ID`);
+  ADD KEY `teacher_ID` (`teacher_ID`),
+  ADD KEY `equipment_ID` (`equipment_ID`),
+  ADD KEY `classroom_ID` (`classroom_ID`),
+  ADD KEY `student_ID` (`student_ID`);
 
 --
 -- A tábla indexei `department`
@@ -218,13 +245,15 @@ ALTER TABLE `grade`
 -- A tábla indexei `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `neptun_code` (`neptun_code`);
 
 --
 -- A tábla indexei `teacher`
 --
 ALTER TABLE `teacher`
   ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `neptun_code` (`neptun_code`),
   ADD KEY `department_ID` (`department_ID`);
 
 --
@@ -235,25 +264,25 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT a táblához `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT a táblához `course`
 --
 ALTER TABLE `course`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT a táblához `department`
 --
 ALTER TABLE `department`
-  MODIFY `ID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT a táblához `equipment`
 --
 ALTER TABLE `equipment`
-  MODIFY `ID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT a táblához `grade`
@@ -265,13 +294,13 @@ ALTER TABLE `grade`
 -- AUTO_INCREMENT a táblához `student`
 --
 ALTER TABLE `student`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT a táblához `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Megkötések a kiírt táblákhoz
@@ -281,11 +310,10 @@ ALTER TABLE `teacher`
 -- Megkötések a táblához `course`
 --
 ALTER TABLE `course`
-  ADD CONSTRAINT `course_ibfk_2` FOREIGN KEY (`equipment_ID`) REFERENCES `equipment` (`ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `course_ibfk_3` FOREIGN KEY (`grade_ID`) REFERENCES `grade` (`ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `course_ibfk_4` FOREIGN KEY (`classroom_ID`) REFERENCES `classroom` (`ID`) ON UPDATE CASCADE,
   ADD CONSTRAINT `course_ibfk_5` FOREIGN KEY (`teacher_ID`) REFERENCES `teacher` (`ID`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `course_ibfk_6` FOREIGN KEY (`student_ID`) REFERENCES `student` (`ID`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `course_ibfk_6` FOREIGN KEY (`equipment_ID`) REFERENCES `equipment` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_ibfk_7` FOREIGN KEY (`classroom_ID`) REFERENCES `classroom` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_ibfk_9` FOREIGN KEY (`student_ID`) REFERENCES `student` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Megkötések a táblához `teacher`
