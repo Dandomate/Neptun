@@ -19,7 +19,14 @@ jobs:
       - name: Compile with Maven
         run: mvn -f NeptunApi/pom.xml compile
       - name: Test with Maven
-        run: mvn test -f NeptunApi/pom.xml
+        run: mvn test -B -f NeptunApi/pom.xml
+        env:
+          MAVEN_OPTS: -Dmaven.jacoco.version=0.8.7
+        uses: bahmutov/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+          maven-version: '3.8.4'
       - name: Coverage with JaCoCo
         if: always()
         run: mvn jacoco:report -f NeptunApi/pom.xml
