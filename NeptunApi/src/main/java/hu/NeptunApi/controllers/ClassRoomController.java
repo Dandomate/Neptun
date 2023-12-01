@@ -26,24 +26,24 @@ public class ClassRoomController {
         return service.getClassRooms();
     }
 
-    @GetMapping("/classrooms/{ID}")
+    @GetMapping("/classroom/{ID}")
     public ClassRoom getClassRoom(@PathVariable("ID") int ID){
         return service.getClassRoom(ID);
     }
 
-    @PostMapping("/classrooms")
+    @PostMapping("/classrooms/add")
     @ResponseStatus(HttpStatus.CREATED)
     public ClassRoom addClassRoom(@RequestBody NewClassRoomRequest newClassRoomRequest){
         return service.addClassRoom(newClassRoomRequest);
     }
 
-    @PatchMapping("/classrooms/{ID}")
+    @PatchMapping("/classrooms/updatespace/{ID}")
     public ClassRoom updateClassRoom(@PathVariable("ID") int ID, @RequestBody ClassRoom classroom){
         Integer space = classroom.getSpace();
         return service.updateClassRoom(ID,space);
     }
 
-    @DeleteMapping("/classrooms/{ID}")
+    @DeleteMapping("/classrooms/delete/{ID}")
     public void deleteClassRoom(@PathVariable("ID") int ID){
         service.deleteClassRoom(ID);
     }

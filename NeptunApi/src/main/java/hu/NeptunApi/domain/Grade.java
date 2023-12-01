@@ -13,7 +13,7 @@ public class Grade {
 
 
     @Min(value = 1,message = "érték 1 nél kisebb")
-    @Max(value = 2, message = "érték 5 nál nagyobb")
+    @Max(value = 5, message = "érték 5 nél nagyobb")
     private int grade;
 
     public Grade() {

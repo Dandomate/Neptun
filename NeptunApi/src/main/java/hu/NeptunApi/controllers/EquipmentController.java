@@ -21,18 +21,18 @@ public class EquipmentController {
         return service.getEquipments();
     }
 
-    @GetMapping("/equipments/{ID}")
+    @GetMapping("/equipment/{ID}")
     public Equipment getEquipment(@PathVariable("ID") int ID){
         return service.getEquipment(ID);
     }
 
-    @PostMapping("/equipments")
+    @PostMapping("/equipments/add")
     @ResponseStatus(HttpStatus.CREATED)
     public Equipment addEquipment(@RequestBody NewEquipmentRequest newEquipmentRequest){
         return service.addEquipment(newEquipmentRequest);
     }
 
-    @PatchMapping("/equipments/{ID}")
+    @PatchMapping("/equipments/update/{ID}")
     public Equipment updateEquipment(@PathVariable("ID") int ID, @RequestBody Equipment equipment){
         String designation = equipment.getDesignation();
         int quantity =equipment.getQuantity();
@@ -40,7 +40,7 @@ public class EquipmentController {
         return service.updateEquipment(ID,designation,quantity,description);
     }
 
-    @DeleteMapping("/equipments/{ID}")
+    @DeleteMapping("/equipment/delete/{ID}")
     public void deleteEquipment(@PathVariable("ID") int ID){
         service.deleteEquipment(ID);
     }

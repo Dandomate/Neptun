@@ -13,7 +13,7 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
-    @Size(min = 1,max = 30, message = "Az ajtoszám min 1 max 30 karakter")
+    @Size(min = 1,max = 30, message = "Az name min 1 max 30 karakter")
     @Column(unique = true)
     private String name;
     @JsonIgnore

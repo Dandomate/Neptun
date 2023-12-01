@@ -36,31 +36,21 @@ public class TeacherService {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
     }
-
-
-    public Teacher updateTeacher(int ID, String name,Department department) {
+    /*
+    public Teacher updateTeacher(int ID,String neptun_code, String name, Department department) {
         Optional<Teacher> optionalTeacher = repository.findById(ID);
         if(optionalTeacher.isPresent()){
             Teacher teacher = optionalTeacher.get();
+            teacher.setNeptun_code(neptun_code);
             teacher.setName(name);
             teacher.setDepartment(department);
             return repository.save(teacher);
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
-/*
-    public Teacher addTeacher(Teacher teacher){
-        Optional<Teacher> optionalTeacher = repository.findById(teacher.getID());
-        if(!optionalTeacher.isPresent()){
-            return repository.save(teacher);
-        }
-        throw new ResponseStatusException(HttpStatus.CONFLICT);
-    }
 
 
- */
-
-
+     */
 
     public void deleteTeacher(int ID) {
         Optional<Teacher> optionalTeacher = repository.findById(ID);
@@ -95,6 +85,7 @@ public class TeacherService {
 
         Teacher teacher = new Teacher();
         teacher.setName(teacherRequest.getName());
+        teacher.setNeptun_code(teacherRequest.getNeptun_code());
         teacher.setDepartment(department);
 
         repository.save(teacher);
@@ -128,18 +119,19 @@ public class TeacherService {
         return teacher;
     }
 
-    public Teacher updateTeacherDepartment(int ID, int newDepartmentId) {
+    public Teacher updateTeacherDepartment(int ID, int department_ID) {
         Teacher teacher = repository.findById(ID)
                 .orElseThrow(() -> new EntityNotFoundException("Teacher not found with ID: " + ID));
 
-        if (newDepartmentId != 0) {
-            Department newDepartment = departmentRepository.findById(newDepartmentId)
-                    .orElseThrow(() -> new EntityNotFoundException("Department not found with ID: " + newDepartmentId));
+        if (department_ID != 0) {
+            Department newDepartment = departmentRepository.findById(department_ID)
+                    .orElseThrow(() -> new EntityNotFoundException("Department not found with ID: " + department_ID));
 
             teacher.setDepartment(newDepartment);
         }
 
         return repository.save(teacher);
     }
-    //add teacher, update teacher department, remove teacher department.....
+
+
 }

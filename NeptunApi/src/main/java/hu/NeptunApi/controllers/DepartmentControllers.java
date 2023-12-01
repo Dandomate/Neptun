@@ -21,24 +21,24 @@ public class DepartmentControllers {
         return service.getDepartments();
     }
 
-    @GetMapping("/departments/{ID}")
+    @GetMapping("/department/{ID}")
     public Department getDepartment(@PathVariable("ID") int ID){
         return service.getDepartment(ID);
     }
 
-    @PostMapping("/departments")
+    @PostMapping("/departments/add")
     @ResponseStatus(HttpStatus.CREATED)
     public Department addDepartment(@RequestBody NewDepartmentRequest newDepartmentRequest){
         return service.addDepartment(newDepartmentRequest);
     }
 
-    @PatchMapping("/department/{ID}")
+    @PatchMapping("/department/updatename/{ID}")
     public Department updateDepartment(@PathVariable("ID") int ID, @RequestBody Department department){
         String name = department.getName();
         return service.updateDepartment(ID,name);
     }
 
-    @DeleteMapping("/department/{ID}")
+    @DeleteMapping("/department/delete/{ID}")
     public void deleteDepartment(@PathVariable("ID") int ID){
         service.deleteDepartment(ID);
     }

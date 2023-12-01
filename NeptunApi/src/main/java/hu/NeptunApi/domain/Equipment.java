@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,9 +25,10 @@ public class Equipment {
     @Size(min = 1,max = 100, message = "A megnevezés min 1 max 100 karakter")
     private String description;
 
+
     @JsonIgnore
-    @OneToMany(mappedBy = "equipment")
-    private List<Equipment> equipment;
+    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
+    private List<Course> courses = new ArrayList<>();
 
     public Equipment() {
     }
@@ -63,11 +65,19 @@ public class Equipment {
         this.description = description;
     }
 
-    public Equipment(int ID, String designation, int quantity, String description, List<Equipment> equipment) {
+    public Equipment(int ID, String designation, int quantity, String description, List<Course> courses) {
         this.ID = ID;
         this.designation = designation;
         this.quantity = quantity;
         this.description = description;
-        this.equipment = equipment;
+        this.courses = courses;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 }

@@ -11,4 +11,6 @@ import java.util.List;
 public interface ClassRoomRepository extends JpaRepository<ClassRoom, Integer> {
     @Query(value="SELECT* FROM classroom", nativeQuery = true)
     public List<Object[]> getClassRooms();
+
+
 }

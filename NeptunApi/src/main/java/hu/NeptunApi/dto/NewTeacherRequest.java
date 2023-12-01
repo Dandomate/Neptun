@@ -8,7 +8,10 @@ public class NewTeacherRequest {
 
 
         private String name;
+
+        private String neptun_code;
         private int department_ID; // Új mező az osztály azonosítójához
+
 
         public String getName() {
             return name;
@@ -25,24 +28,14 @@ public class NewTeacherRequest {
         public void setDepartment_ID(int department_ID) {
             this.department_ID = department_ID;
         }
+
+    public String getNeptun_code() {
+        return neptun_code;
     }
 
-
-/*
-
-    public Teacher toTeacher() {
-        Teacher teacher = new Teacher();
-        teacher.setName(this.name);
-
-        // Itt ellenőrizzük, hogy a departmentId ne legyen null és nagyobb legyen, mint 0
-        if (this.department_ID > 0) {
-            // Beállítjuk a Teacher osztályhoz tartozó Department objektumot
-            Department department = new Department();
-            department.setID(this.department_ID);
-            teacher.setDepartment(department);
-        }
-
-        return teacher;
+    public void setNeptun_code(String neptun_code) {
+        this.neptun_code = neptun_code;
     }
+}
 
- */
+

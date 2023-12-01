@@ -1,5 +1,7 @@
 package hu.NeptunApi.domain;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -13,40 +15,42 @@ import java.util.Set;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private int ID;
-    @Size(min = 1,max = 10, message = "Az ajtoszám min 1 max 10 karakter")
+    @Size(min = 1,max = 20, message = "Az name min 1 max 10 karakter")
     @Column(unique = true)
     private String name;
-    @Size(min = 1,max = 10, message = "Az ajtoszám min 1 max 10 karakter")
+    @Size(min = 1, max = 30, message = "Az leírás min 0 max 30 karakter")
     @Column(unique = true)
     private String description;
 
-    @Size(min = 1,max = 10, message = "Az ajtoszám min 1 max 10 karakter")
+    @Size(min = 1,max = 10, message = "A nap 1-10 közötti karakter")
     @Column(unique = true)
-    private String date;
+    private String day;
 
 
 
     @ManyToOne
-    @JoinColumn(name = "equipment_id")
+    @JoinColumn(name = "equipment_ID")
     private Equipment equipment;
 
 
     @ManyToOne
-    @JoinColumn(name = "classroom_id")
+    @JoinColumn(name = "classroom_ID")
     private ClassRoom classroom;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id")
+    @JoinColumn(name = "teacher_ID")
     private Teacher teacher;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_ID")
     private Student student;
 
 
     public Course() {
     }
+
 
     public int getID() {
         return ID;
@@ -72,12 +76,12 @@ public class Course {
         this.description = description;
     }
 
-    public String getDate() {
-        return date;
+    public String getDay() {
+        return day;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDay(String day) {
+        this.day = day;
     }
 
     public Equipment getEquipment() {
@@ -111,4 +115,6 @@ public class Course {
     public void setStudent(Student student) {
         this.student = student;
     }
+
+
 }

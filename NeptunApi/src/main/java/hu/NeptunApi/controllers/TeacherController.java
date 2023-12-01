@@ -36,31 +36,25 @@ public class TeacherController {
 
     }
 
-    /*
-    @PostMapping("/teachers")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Teacher addTeacher(@RequestBody Teacher teacher){
-        return service.addTeacher(teacher);
-    }
+/*
 
-
-     */
-
-
-    @PatchMapping("/teachers/{ID}")
+    @PatchMapping("/teachers/update/{ID}")
     public Teacher updateTeacher(@PathVariable("ID") int ID, @RequestBody Teacher teacher) {
         String name = teacher.getName();
+        String neptun_code = teacher.getNeptun_code();
         Department department = teacher.getDepartment();
 
-        return service.updateTeacher(ID, name, department);
+        return service.updateTeacher(ID,neptun_code, name, department);
     }
 
-    @DeleteMapping("/teachers/{ID}")
+
+ */
+    @DeleteMapping("/teachers/delete/{ID}")
     public void deleteTeacher(@PathVariable("ID") int ID) {
         service.deleteTeacher(ID);
     }
 
-    @GetMapping("/teachersdep/{ID}")
+    @GetMapping("/teachers/department/{ID}")
     public ResponseEntity<Map<String, String>> getTeacherDetails(@PathVariable int ID) {
         Map<String, String> details = service.getTeacherDetails(ID);
 
@@ -97,12 +91,14 @@ public class TeacherController {
     @PatchMapping("/teachers/department/update/{ID}")
     public ResponseEntity<Teacher> updateTeacherDepartment(
             @PathVariable int ID,
-            @RequestParam(required = false, defaultValue = "0") int newDepartmentId) {
-        try {
-            Teacher updatedTeacher = service.updateTeacherDepartment(ID, newDepartmentId);
-            return ResponseEntity.ok(updatedTeacher);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-    }
+            @RequestBody Map<String, Object> payload) {
+        int department_ID = (int) payload.get("department_ID");
+        {
+            try {
+                Teacher updatedTeacher = service.updateTeacherDepartment(ID, department_ID);
+                return ResponseEntity.ok(updatedTeacher);
+            } catch (EntityNotFoundException e) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        }}
 }
