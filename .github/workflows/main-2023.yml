@@ -17,7 +17,7 @@ jobs:
         with:
           step: restore
       - name: Compile with Maven
-        run: mvn compile
+        run: mvn -f NeptunAPI/pom.xml compile
       - name: Test with Maven
         run: mvn test
       - name: Coverage with JaCoCo
