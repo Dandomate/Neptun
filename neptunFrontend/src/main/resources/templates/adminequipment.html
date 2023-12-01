@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Administration - Add Department</title>
+</head>
+<body>
+<header class="container">
+    <nav th:replace="nav::adminnavbar"></nav>
+</header>
+<main class="container">
+
+    <p class="bg-success text-white" th:if="${status} == 201" th:text="' New equipment is added'"></p>
+    <p class="bg-warning" th:if="${status} == 409" th:text="' ID duplication'"></p>
+    <p class="bg-success text-white" th:if="${status} == 200" th:text="' The update was successful'"></p>
+    <p class="bg-danger text-white" th:if="${status} == 100" th:text="' Equipment is deleted'"></p>
+
+    <h4>Add new Equipment</h4>
+    <form method="POST" th:action="@{/addequipment}">
+        <div class="mb-3">
+            <label for="designation" class="form-label">Designation</label>
+            <input type="text" class="form-control" id="designation" name="designation" placeholder="Designation">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" name="description" placeholder="Description">
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+
+    <h4 class="mt-4">Equipments</h4>
+    <table class="table table-hover table-striped bg-primary bg-opacity-25">
+        <tr>
+            <th>Designation</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th colspan="2" class="text-center">manage</th>
+
+
+        </tr>
+        <tr th:each="equipment : ${equipments}">
+            <td th:text="${equipment.designation}"></td>
+            <td th:text="${equipment.quantity}"></td>
+            <td th:text="${equipment.description}"></td>
+            <td>
+                <form method="post" th:action="@{/updateequipment}">
+                    <input type="hidden" name="ID" th:value="${equipment.ID}">
+                    <button class="btn btn-success">Swap</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" th:action="@{/delete-equipment}">
+                    <input type="hidden" name="ID" th:value="${equipment.ID}">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</main>
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+-->
+</body>
+</html>
