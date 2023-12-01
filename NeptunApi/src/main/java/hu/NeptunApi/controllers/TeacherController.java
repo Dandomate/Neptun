@@ -1,15 +1,12 @@
 package hu.NeptunApi.controllers;
 
-import hu.NeptunApi.domain.Department;
 import hu.NeptunApi.domain.Teacher;
 import hu.NeptunApi.dto.NewTeacherRequest;
-import hu.NeptunApi.repositories.DepartmentRepository;
 import hu.NeptunApi.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -50,8 +47,9 @@ public class TeacherController {
 
  */
     @DeleteMapping("/teachers/delete/{ID}")
-    public void deleteTeacher(@PathVariable("ID") int ID) {
+    public ResponseEntity<String> deleteTeacher(@PathVariable("ID") int ID) {
         service.deleteTeacher(ID);
+        return ResponseEntity.ok("Teacher delete successfully.");
     }
 
     @GetMapping("/teachers/department/{ID}")

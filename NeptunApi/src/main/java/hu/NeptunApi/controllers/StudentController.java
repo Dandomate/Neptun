@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -40,8 +41,9 @@ public class StudentController {
         return service.updateStudent(ID, name,birth_day,neptun_code);
     }
     @DeleteMapping("/students/delete/{ID}")
-    public void deleteStudent(@PathVariable("ID") int ID){
+    public ResponseEntity<String> deleteStudent(@PathVariable("ID") int ID){
         service.deleteStudent(ID);
+        return ResponseEntity.ok("Student delete successfully.");
     }
 
 

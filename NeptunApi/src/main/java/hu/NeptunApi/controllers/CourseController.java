@@ -4,7 +4,6 @@ import hu.NeptunApi.domain.Course;
 
 import hu.NeptunApi.domain.StudentCourseList;
 import hu.NeptunApi.domain.TeacherCourseList;
-import hu.NeptunApi.dto.NewTeacherRequest;
 import hu.NeptunApi.services.CourseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,9 +60,11 @@ private CourseService service;
     }
 
     @DeleteMapping("/course/delete/{ID}")
-    public void deleteCourse(@PathVariable("ID") int ID) {
+    public ResponseEntity<String> deleteCourse(@PathVariable("ID") int ID) {
         service.deleteCourse(ID);
+        return ResponseEntity.ok("Course delete successfully.");
     }
+
 
 
 

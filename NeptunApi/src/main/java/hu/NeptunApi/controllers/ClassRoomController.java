@@ -8,6 +8,7 @@ import hu.NeptunApi.services.ClassRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -44,8 +45,9 @@ public class ClassRoomController {
     }
 
     @DeleteMapping("/classrooms/delete/{ID}")
-    public void deleteClassRoom(@PathVariable("ID") int ID){
+    public ResponseEntity<String> deleteClassRoom(@PathVariable("ID") int ID){
         service.deleteClassRoom(ID);
+        return ResponseEntity.ok("ClassRoom delete successfully.");
     }
 
 }

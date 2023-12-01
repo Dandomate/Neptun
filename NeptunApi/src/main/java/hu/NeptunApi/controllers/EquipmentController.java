@@ -6,6 +6,7 @@ import hu.NeptunApi.dto.NewEquipmentRequest;
 import hu.NeptunApi.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,8 +42,9 @@ public class EquipmentController {
     }
 
     @DeleteMapping("/equipment/delete/{ID}")
-    public void deleteEquipment(@PathVariable("ID") int ID){
+    public ResponseEntity<String> deleteEquipment(@PathVariable("ID") int ID){
         service.deleteEquipment(ID);
+        return ResponseEntity.ok("Equipment delete successfully.");
     }
 }
 

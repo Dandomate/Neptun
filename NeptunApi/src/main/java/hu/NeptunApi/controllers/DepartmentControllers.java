@@ -6,6 +6,7 @@ import hu.NeptunApi.dto.NewDepartmentRequest;
 import hu.NeptunApi.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,7 +40,8 @@ public class DepartmentControllers {
     }
 
     @DeleteMapping("/department/delete/{ID}")
-    public void deleteDepartment(@PathVariable("ID") int ID){
+    public ResponseEntity<String> deleteDepartment(@PathVariable("ID") int ID){
         service.deleteDepartment(ID);
+        return ResponseEntity.ok("Department delete successfully.");
     }
 }
