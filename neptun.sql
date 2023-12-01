@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2023. Nov 15. 22:07
+-- Létrehozás ideje: 2023. Nov 23. 02:28
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -39,9 +39,35 @@ CREATE TABLE `classroom` (
 
 INSERT INTO `classroom` (`ID`, `door`, `space`) VALUES
 (1, '128B', 21),
-(2, '2', 120),
 (3, 'D1', 60),
-(4, 'D2', 34);
+(4, 'D2', 34),
+(5, '128', 21);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `course`
+--
+
+CREATE TABLE `course` (
+  `ID` int(10) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `description` text NOT NULL,
+  `date` varchar(30) NOT NULL,
+  `equipment_ID` int(10) NOT NULL,
+  `classroom_ID` int(10) NOT NULL,
+  `grade_ID` int(10) NOT NULL,
+  `teacher_ID` int(10) NOT NULL,
+  `student_ID` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `course`
+--
+
+INSERT INTO `course` (`ID`, `name`, `description`, `date`, `equipment_ID`, `classroom_ID`, `grade_ID`, `teacher_ID`, `student_ID`) VALUES
+(1, 'Angol', 'Angol tárgy teljesitéséhez xy kell', '2021.01.12', 1, 5, 2, 3, 1),
+(3, 'Operácio Kutatás', 'A tárgy teljesitése 50%', '2021.01.12', 1, 4, 4, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -60,7 +86,9 @@ CREATE TABLE `department` (
 
 INSERT INTO `department` (`ID`, `name`) VALUES
 (1, 'Programtervező informatikus'),
-(2, 'Vendéglátás');
+(2, 'Vendéglátás'),
+(3, 'Rendszergazda'),
+(4, 'Földrajz');
 
 -- --------------------------------------------------------
 
@@ -89,7 +117,7 @@ INSERT INTO `equipment` (`ID`, `designation`, `quantity`, `description`) VALUES
 --
 
 CREATE TABLE `grade` (
-  `ID` int(11) NOT NULL,
+  `ID` int(30) NOT NULL,
   `grade` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -111,22 +139,45 @@ INSERT INTO `grade` (`ID`, `grade`) VALUES
 --
 
 CREATE TABLE `student` (
-  `ID` int(30) NOT NULL,
-  `OM` bigint(30) NOT NULL,
+  `ID` int(10) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `birthDate` date NOT NULL,
-  `neptunCode` varchar(30) NOT NULL
+  `birth_date` varchar(11) NOT NULL,
+  `neptun_code` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `student`
 --
 
-INSERT INTO `student` (`ID`, `OM`, `name`, `birthDate`, `neptunCode`) VALUES
-(1, 762727364721, 'Papp János', '2023-11-22', 'AYIE0M'),
-(2, 762727364722, 'Ádám Zsolt', '2023-11-29', 'AYIE2M'),
-(3, 762727364733, 'Réti Géza', '2023-11-08', 'ASD1SD'),
-(4, 762727364734, 'Molnár Réka', '2023-11-01', 'SDGF1S');
+INSERT INTO `student` (`ID`, `name`, `birth_date`, `neptun_code`) VALUES
+(1, 'valaki', '20251', 'AYIE0MS'),
+(2, 'Janoska', '1999.09.12', 'JETTE1');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `teacher`
+--
+
+CREATE TABLE `teacher` (
+  `ID` int(10) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `department_ID` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `teacher`
+--
+
+INSERT INTO `teacher` (`ID`, `name`, `department_ID`) VALUES
+(1, 'Dandóczi', 1),
+(2, 'Réti Géza', 2),
+(3, 'Tavas János', 3),
+(43, 'John Doe', 4),
+(52, 'Papp János', 2),
+(53, 'Papika', 3),
+(54, 'Toth Zoltán', 3),
+(67, 'Totha', 3);
 
 --
 -- Indexek a kiírt táblákhoz
@@ -137,6 +188,13 @@ INSERT INTO `student` (`ID`, `OM`, `name`, `birthDate`, `neptunCode`) VALUES
 --
 ALTER TABLE `classroom`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- A tábla indexei `course`
+--
+ALTER TABLE `course`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `equipment_ID` (`equipment_ID`,`classroom_ID`,`grade_ID`,`teacher_ID`,`student_ID`);
 
 --
 -- A tábla indexei `department`
@@ -163,6 +221,13 @@ ALTER TABLE `student`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- A tábla indexei `teacher`
+--
+ALTER TABLE `teacher`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `department_ID` (`department_ID`);
+
+--
 -- A kiírt táblák AUTO_INCREMENT értéke
 --
 
@@ -170,31 +235,63 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT a táblához `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT a táblához `course`
+--
+ALTER TABLE `course`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `department`
 --
 ALTER TABLE `department`
-  MODIFY `ID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT a táblához `equipment`
 --
 ALTER TABLE `equipment`
-  MODIFY `ID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT a táblához `grade`
 --
 ALTER TABLE `grade`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT a táblához `student`
 --
 ALTER TABLE `student`
-  MODIFY `ID` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT a táblához `teacher`
+--
+ALTER TABLE `teacher`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+
+--
+-- Megkötések a kiírt táblákhoz
+--
+
+--
+-- Megkötések a táblához `course`
+--
+ALTER TABLE `course`
+  ADD CONSTRAINT `course_ibfk_2` FOREIGN KEY (`equipment_ID`) REFERENCES `equipment` (`ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_ibfk_3` FOREIGN KEY (`grade_ID`) REFERENCES `grade` (`ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_ibfk_4` FOREIGN KEY (`classroom_ID`) REFERENCES `classroom` (`ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_ibfk_5` FOREIGN KEY (`teacher_ID`) REFERENCES `teacher` (`ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_ibfk_6` FOREIGN KEY (`student_ID`) REFERENCES `student` (`ID`) ON UPDATE CASCADE;
+
+--
+-- Megkötések a táblához `teacher`
+--
+ALTER TABLE `teacher`
+  ADD CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`department_ID`) REFERENCES `department` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
