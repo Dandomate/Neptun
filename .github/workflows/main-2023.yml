@@ -17,7 +17,7 @@ jobs:
         with:
           step: restore
       - name: Compile with Maven
-        run: mvn -f NeptunAPI/pom.xml compile
+        run: mvn -f NeptunApi/pom.xml compile
       - name: Test with Maven
         run: mvn test
       - name: Coverage with JaCoCo
@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: neptun-coverage
-          path: ./Neptun/target/site/jacoco
+          path: ./NeptunApi/target/site/jacoco
       - name: Restore Maven cache
         uses: skjolber/maven-cache-github-action@v1
         with:
