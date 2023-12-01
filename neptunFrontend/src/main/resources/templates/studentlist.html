@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofP+0N4P+1s4A4Gg6p1P1aY2t+L4WqiS3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Students</title>
+</head>
+<body>
+<header class="container">
+    <nav th:replace="nav::navbar" class="navbar navbar-expand-lg navbar-dark bg-dark navbar-transparent"></nav>
+</header>
+
+<main class="container">
+    <i class="fas fa-graduation-cap"></i>
+    <h3>Students</h3>
+    <table class="table table-hover table-striped table-primary">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Birth Date</th>
+            <th>Neptun Code</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="studentlist : ${studentlist}" class="animate__animated animate__fadeIn">
+            <td th:text="${studentlist.name}"></td>
+            <td th:text="${studentlist.birth_date}"></td>
+            <td th:text="${studentlist.neptun_code}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script th:replace="footerscript::logo"></script>
+
+<footer class="container" >
+    <footer th:replace="footer::footer">
+    </footer>
+</footer>
+</body>
+</html>

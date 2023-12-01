@@ -1,0 +1,888 @@
+{
+	"info": {
+		"_postman_id": "5d5eabb5-a561-4280-ba87-7a9cb62cae36",
+		"name": "Api Test with Postman",
+		"description": "Ebben a mappában találhatóak a kérések tesztelése a Neptun Api-hoz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21170731"
+	},
+	"item": [
+		{
+			"name": "ClassRoom Test",
+			"item": [
+				{
+					"name": "/updatespace/{ID}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"space\": 30\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/classrooms/updatespace/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"classrooms",
+								"updatespace",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/classrooms/delete/{ID}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/classrooms/delete/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"classrooms",
+								"delete",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/classrooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/classrooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"classrooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/classroom/{ID}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/classroom/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"classroom",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/classrooms/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"door\": \"A123\",\r\n  \"space\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/classrooms/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"classrooms",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "A mappában találhatóak a postman kérések a ClassRoom API-ra.  \nGET /classrooms - Kiírja az összes termet.  \nGET /classrom/{ID} - Kiír egy adott termet ID szerint.  \nPOST /classrooms/add - Hozzáad a termek közé egy új termet.  \nPATCH /updatespace/{ID} - Frissiti a terem férőhelyét ID szerint.  \nDELETE /classrooms/delete/{ID} - Törli az adott termet ID szerint."
+		},
+		{
+			"name": "Department Test",
+			"item": [
+				{
+					"name": "/departments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/departments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/department/{ID}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/department/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"department",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/departments/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Turisztika\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/departments/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"departments",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/department/updatename/{ID}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Túrizmus\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/department/updatename/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"department",
+								"updatename",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/department/delete/{ID}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/department/delete/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"department",
+								"delete",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "A mappában találhatóak a postman kérések a Department API-ra.  \nGET /departments - Kiírja az összes tanszéket.  \nGET /departments/{ID} - Kiír egy adott tanszéket ID szerint.  \nPOST /departments/add - Hozzáad a tanszékek közé egy új tanszéket.  \nPATCH /department/updatename/{ID} - Frissiti a tanszék nevét ID szerint.  \nDELETE /department/delete/{ID} - Törli az adott tanszéket ID szerint."
+		},
+		{
+			"name": "Equipment",
+			"item": [
+				{
+					"name": "/equipments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/equipments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"equipments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/equipment/{ID}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/equipment/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"equipment",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/equipments/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"designation\": \"Laptop\",\r\n  \"quantity\": 10,\r\n  \"description\": \"High-performance laptop\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/equipments/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"equipments",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/equipments/update/{ID}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"designation\": \"Laptop\",\r\n  \"quantity\": 10,\r\n  \"description\": \"High-performance\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/equipments/update/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"equipments",
+								"update",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/equipment/delete/{ID}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/equipment/delete/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"equipment",
+								"delete",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "A mappában találhatóak a postman kérések a Equipment API-ra.  \nGET /equipments - Kiírja az összes felszerelést.  \nGET /equipments/{ID} - Kiír egy adott felszerelést ID szerint.  \nPOST /equipments/add - Hozzáad a felszerelések közé egy új felszerelést.  \nPATCH /equipments/update/{ID} - Frissiti a felszerelés adatait ID szerint.  \nDELETE /equipment/delete/{ID} - Törli az adott felszerelést ID szerint."
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "/students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/student/{ID}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/student/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"student",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/students/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Postman Test\",\r\n  \"birth_date\": \"2001-10-10\",\r\n  \"neptun_code\": \"ABC123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/students/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"students",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/student/update/{ID}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Postman Test Update\",\r\n  \"birth_date\": \"2001-10-10\",\r\n  \"neptun_code\": \"ABC123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/student/update/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"student",
+								"update",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/students/delete/{ID}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/students/delete/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"students",
+								"delete",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "A mappában találhatóak a postman kérések a Student API-ra.  \nGET /students - Kiírja az összes diákot  \nGET /student/{ID} - Kiír egy adott diákot ID szerint.  \nPOST /students/add - Hozzáad a diákok közé egy új diákot.  \nPATCH /student/update/{ID} - Frissiti a diák adatait ID szerint.  \nDELETE /students/delete/{ID} - Törli az adott diákot ID szerint."
+		},
+		{
+			"name": "Coruse",
+			"item": [
+				{
+					"name": "/courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/student/course/UHZTGN/hétfő",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/student/course/UHZTGN/hétfő",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"student",
+								"course",
+								"UHZTGN",
+								"hétfő"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/teacher/course/DFGHJK/hétfő",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/teacher/course/DFGHJK/hétfő",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"teacher",
+								"course",
+								"DFGHJK",
+								"hétfő"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/course/{ID}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/course/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"course",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/course/updatename/{ID}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Progtech\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/course/updatename/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"course",
+								"updatename",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/courses/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Rendszerközeli Prog\",\r\n  \"description\": \"10-12\",\r\n  \"day\": \"Kedd\",\r\n  \"equipment_ID\": 8, \r\n  \"classroom_ID\": 7,\r\n  \"teacher_ID\": 68,\r\n  \"student_ID\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/courses/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"courses",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/course/delete/{ID}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/course/delete/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"course",
+								"delete",
+								"20"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "A mappában találhatóak a postman kérések a Course API-ra.  \nGET /courses - Kiírja az összes kurzust.  \nGET /courses/{ID} - Kiír egy adott kurzust ID szerint.  \nGET /student/course/{neptun_code}/{day} - Kiírja egy adott diák kurzusát neptun_code és nap szerint.  \nGET /teacher/course/{neptun_code}/{day} - Kiírja egy adott tanár kurzusát neptun_code és nap szerint.  \nPOST /courses/add - Hozzáad a kurzusok közé egy új kurzust.  \nPATCH /course/updatename/update/{ID} - Frissiti a kurzus nevét ID szerint.  \nDELETE /course/delete/{ID} - Törli az adott kurzust ID szerint.  \n//még hiányzik belőle pár update."
+		},
+		{
+			"name": "Teacher",
+			"item": [
+				{
+					"name": "/teachers/{ID}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/teachers/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"teachers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/teachers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/teachers/department/{ID}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/teachers/department/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"teachers",
+								"department",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/teachers/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"neptun_code\": \"ABC123\",\r\n  \"name\": \"John Doe\",\r\n  \"department_ID\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/teachers/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"teachers",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/teachers/name/update/{ID}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"New Teacher Name\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/teachers/name/update/71",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"teachers",
+								"name",
+								"update",
+								"71"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/teachers/department/update/{ID}",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"department_ID\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8095/teachers/department/update/71",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"teachers",
+								"department",
+								"update",
+								"71"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/teachers/delete/{ID}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8095/teachers/delete/71",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8095",
+							"path": [
+								"teachers",
+								"delete",
+								"71"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "A mappában találhatóak a postman kérések a Teacher API-ra.  \nGET /teachers - Kiírja az összes tanárt.  \nGET /teachers/{ID} - Kiír egy adott tanárt ID szerint.  \nGET /teachers/department/{ID} - Kiírja egy adott tanárt tanszékét ID szerint.  \nPOST /teachers/add - Hozzáad a tanárok közé egy új tanárt.  \nPATCH /teachers/name/update/{ID} - Frissiti a tanár nevét ID szerint.  \nPATCH /teachers/department/update/{ID} - Frissiti a tanár tanszékét ID szerint.  \nDELETE /teachers/delete/{ID} - Törli az adott tanárt ID szerint."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

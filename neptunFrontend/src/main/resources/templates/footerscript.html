@@ -1,0 +1,11 @@
+<script th:fragment="logo">
+
+  let cx = document.querySelector("canvas").getContext("2d");
+  let img = document.createElement("img");
+  img.src="/pics/logo.png";
+  img.addEventListener("load", () => {
+    for (let x = 10; x < 40; x += 30) {
+      cx.drawImage(img, 0, 0);
+    }
+  });
+    </script>
