@@ -7,19 +7,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Java 11
+      - name: Set up Java 11 with Maven
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: '11'
+          maven-version: '3.8.4'
       - name: Restore Maven cache
         uses: skjolber/maven-cache-github-action@v1
         with:
           step: restore
       - name: Compile with Maven
         run: mvn -f NeptunApi/pom.xml compile
+
       - name: Test with Maven
         run: mvn test -f NeptunApi/pom.xml
+
       - name: Coverage with JaCoCo
         if: always()
         run: mvn jacoco:report -f NeptunApi/pom.xml
