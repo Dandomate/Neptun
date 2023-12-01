@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: neptun-coverage
-          path: ./RFT_Neptun/target/site/jacoco
+          path: ./Neptun/target/site/jacoco
       - name: Restore Maven cache
         uses: skjolber/maven-cache-github-action@v1
         with:
