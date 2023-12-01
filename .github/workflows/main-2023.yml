@@ -12,7 +12,6 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '17'
-          maven-version: '3.8.4'
       - name: Restore Maven cache
         uses: skjolber/maven-cache-github-action@v1
         with:
