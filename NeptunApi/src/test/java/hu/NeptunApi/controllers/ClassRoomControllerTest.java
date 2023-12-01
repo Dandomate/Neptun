@@ -5,8 +5,10 @@ import hu.NeptunApi.domain.ClassRoomList;
 import hu.NeptunApi.dto.NewClassRoomRequest;
 import hu.NeptunApi.services.ClassRoomService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
@@ -14,8 +16,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class ClassRoomControllerTest {
 
     @Mock
@@ -49,6 +50,7 @@ public class ClassRoomControllerTest {
         // Assert
         verify(classRoomService, times(1)).updateClassRoom(eq(roomId), anyInt());
     }
+
     @Test
     public void testDeleteClassRoom() {
         // Arrange
@@ -60,8 +62,6 @@ public class ClassRoomControllerTest {
         // Assert
         verify(classRoomService, times(1)).deleteClassRoom(eq(roomId));
     }
-
-
 
     @Test
     public void testGetClassRoom() {
@@ -76,6 +76,7 @@ public class ClassRoomControllerTest {
         // Assert
         assertEquals(expectedClassRoom, actualClassRoom);
     }
+
     @Test
     public void testGetClassRooms() {
         // Arrange

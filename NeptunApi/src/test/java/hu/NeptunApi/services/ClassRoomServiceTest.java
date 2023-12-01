@@ -22,9 +22,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@SpringBootTest
+
 @ExtendWith(MockitoExtension.class)
 class ClassRoomServiceTest {
+
     @InjectMocks
     private ClassRoomService classRoomService;
 
@@ -123,6 +124,7 @@ class ClassRoomServiceTest {
         // Ellenőrizzük, hogy a save metódus meghívódott-e
         verify(classRoomRepository, Mockito.times(1)).save(Mockito.any(ClassRoom.class));
     }
+
     @Test
     void testDeleteClassRoom() {
         // Szimuláljuk az osztályszoba meglétét
