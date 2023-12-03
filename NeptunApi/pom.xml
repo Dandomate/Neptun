@@ -11,8 +11,8 @@
 	<groupId>hu</groupId>
 	<artifactId>NeptunApi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>TimeTableApi</name>
-	<description>timetable</description>
+	<name>NeptunApi</name>
+	<description>neptun</description>
 	<properties>
 		<java.version>11</java.version>
 		<maven.compiler.source>11</maven.compiler.source>
