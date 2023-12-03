@@ -80,4 +80,11 @@ public class Equipment {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
+
+    public Equipment(int ID, String designation, int quantity, String description) {
+        this.ID = ID;
+        this.designation = designation;
+        this.quantity = quantity;
+        this.description = description;
+    }
 }
