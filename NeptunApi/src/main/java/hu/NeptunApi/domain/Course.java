@@ -116,5 +116,10 @@ public class Course {
         this.student = student;
     }
 
-
+    public Course(int ID, String name, String description, String day) {
+        this.ID = ID;
+        this.name = name;
+        this.description = description;
+        this.day = day;
+    }
 }

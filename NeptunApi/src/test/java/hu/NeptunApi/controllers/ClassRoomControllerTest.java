@@ -43,6 +43,7 @@ public class ClassRoomControllerTest {
         int roomId = 1;
         ClassRoom updatedClassRoom = new ClassRoom();
         // Állítsd be a frissített osztályterem attribútumait szükség esetén
+        updatedClassRoom.setSpace(11);
 
         // Act
         classRoomController.updateClassRoom(roomId, updatedClassRoom);
