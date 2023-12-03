@@ -21,7 +21,7 @@ public class Student {
     @Size(min = 3,max = 30,message = "A név 3-30 közötti karakter legyen")
     @Column(name = "name")
     private String name;
-    @Size(min = 1,max = 30,message = "A születés 1-30közötti karakter legyen igy add meg: 2001-10-10")
+    @Size(min = 1,max = 30,message = "A születés 1-30 közötti karakter legyen igy add meg: 2001-10-10")
     @Column(name = "birth_date")
     private String birth_date;
     @Size(min = 1,max = 30,message = "A neptun 1-30 közötti karakter legyen")

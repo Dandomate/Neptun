@@ -44,7 +44,7 @@ class StudentTest {
 
         // Assert
         assertEquals(1, violations.size());
-        assertFalse(violations.stream().anyMatch(v -> v.getMessage().equals("A születés 1-30 közötti karakter legyen igy add meg: 2001-10-10")));
+        assertTrue(violations.stream().anyMatch(v -> v.getMessage().equals("A születés 1-30 közötti karakter legyen igy add meg: 2001-10-10")));
     }
 
     @Test
