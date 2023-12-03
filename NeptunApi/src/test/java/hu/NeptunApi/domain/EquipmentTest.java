@@ -48,19 +48,36 @@ class EquipmentTest {
     }
 
     @Test
-    public void testDescriptionValidation() {
+    public void testQuantityInvalidation() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
 
         // Arrange
         Equipment equipment = new Equipment();
-        equipment.setDescription("Test"); // Invalid description
+        equipment.setQuantity(100); // Invalid quantity value
 
         // Act
         Set<ConstraintViolation<Equipment>> violations = validator.validate(equipment);
 
         // Assert
         assertEquals(1, violations.size());
-        assertFalse(violations.stream().anyMatch(v -> v.getMessage().equals("A megnevezés min 1 max 100 karakter")));
+        assertEquals("érték 30 nál nagyobb", violations.iterator().next().getMessage());
+    }
+
+    @Test
+    public void testDescriptionValidation() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+
+        // Arrange
+        Equipment equipment = new Equipment();
+        equipment.setDescription(""); // Invalid description
+
+        // Act
+        Set<ConstraintViolation<Equipment>> violations = validator.validate(equipment);
+
+        // Assert
+        assertEquals(2, violations.size());
+        assertTrue(violations.stream().anyMatch(v -> v.getMessage().equals("A megnevezés min 1 max 100 karakter")));
     }
 }
