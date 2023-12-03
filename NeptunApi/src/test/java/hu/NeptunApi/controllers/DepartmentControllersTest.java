@@ -78,7 +78,6 @@ public class DepartmentControllersTest {
         Department updatedDepartment = new Department();
         updatedDepartment.setName("UpdatedDepartmentName"); // Set the updated department name
 
-        // Act
         departmentControllers.updateDepartment(departmentId, updatedDepartment);
 
         // Assert
