@@ -17,6 +17,7 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     private int ID;
+    @Size(min = 5,max = 30,message = "Your Neptune code min 5 characters and max 30 characters")
     @Column(name = "neptun_code",unique = true)
     private String neptun_code;
     @NotNull
