@@ -113,7 +113,7 @@ public class CourseControllerTest {
         // Arrange
         String neptunCode = "NEPTUN456";
         String days = "Tuesday";
-        List<TeacherCourseList> expectedList = new ArrayList<>(); // Add some test data
+        List<TeacherCourseList> expectedList = new ArrayList<>();
 
         // Itt beállítjuk, hogy a service.getTeacherCourseList híváskor visszaadjon egy példa listát
         when(courseService.getTeacherCourseList(eq(neptunCode), eq(days))).thenReturn(expectedList);
@@ -133,7 +133,7 @@ public class CourseControllerTest {
     public void testGetCourse() {
         // Arrange
         int courseId = 1;
-        Course expectedCourse = new Course(); // Add some test data
+        Course expectedCourse = new Course();
 
         // Itt beállítjuk, hogy a service.getCourse híváskor visszaadjon egy példa Course objektumot
         when(courseService.getCourse(eq(courseId))).thenReturn(expectedCourse);
